@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, LoginManager
 from .models import User, Event
 from . import db
 
@@ -52,3 +52,28 @@ def signup_post():
 def logout():
     logout_user()
     return redirect(url_for('auth.login'))
+
+@auth.route('/create-event')
+@login_required
+def createevent():
+    return render_template('create-event.html')
+
+@auth.route('/create-event', methods=['POST'])
+@login_required
+def createevent_post():
+    event = request.form.get('event')
+    category = request.form.get('category')
+    location = request.form.get('location')
+    address = request.form.get('address')
+    initial_date = request.form.get('initial_date')
+    final_date = request.form.get('final_date')
+    attendance = request.form.get('attendance')
+
+    user_id = 1
+
+    new_event = Event(event=event, category=category, location=location, address=address, initial_date=initial_date, final_date=final_date, attendance=attendance, user_id=user_id)
+
+    db.session.add(new_event)
+    db.session.commit()
+
+    return redirect(url_for('main.events'))

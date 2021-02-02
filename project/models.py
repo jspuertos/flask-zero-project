@@ -12,13 +12,13 @@ class User(UserMixin, db.Model):
 class Event(db.Model):
     __tablename__ = 'events'
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80))
+    event = db.Column(db.String(80))
     category = db.Column(db.String(80))
     location = db.Column(db.String(100))
     address = db.Column(db.String(100))
     initial_date = db.Column(db.DateTime())
     final_date = db.Column(db.DateTime())
-    presential_virtual = db.Column(db.Boolean())
+    attendance = db.Column(db.String(80))
     created_on = db.Column(db.DateTime(), default=datetime.utcnow)
     updated_on = db.Column(db.DateTime(), default=datetime.utcnow, onupdate=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
