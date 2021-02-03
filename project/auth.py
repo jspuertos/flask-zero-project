@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import login_user, logout_user, login_required, LoginManager
+from flask_login import login_user, logout_user, login_required, LoginManager, current_user
 from .models import User, Event
 from . import db
 
@@ -69,7 +69,7 @@ def createevent_post():
     final_date = request.form.get('final_date')
     attendance = request.form.get('attendance')
 
-    user_id = 1
+    user_id = current_user.id
 
     new_event = Event(event=event, category=category, location=location, address=address, initial_date=initial_date, final_date=final_date, attendance=attendance, user_id=user_id)
 

@@ -2,57 +2,41 @@
 
 {% block content %}
 <h1 class="title">
-  Welcome, {{ email }}!
+  Welcome {{ email }}, this are your events!
 </h1>  
-  <head>
-    <style>
-    table {
-      border-collapse: collapse;
-      width: 100%;
-    }
-    
-    td, th {
-      border: 1px solid #dddddd;
-      text-align: left;
-      padding: 8px;
-    }
-    
-    tr:nth-child(even) {
-      background-color: #501c1c;
-    }
-    </style>
-    </head>
-    <body>
-    
-    <table>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Event</th>
+          <th scope="col">Category</th>
+          <th scope="col">Location</th>
+          <th scope="col">Address</th>
+          <th scope="col">Initial Date</th>
+          <th scope="col">Final Date</th>
+          <th scope="col">Attendance</th>
+          <th scope="col">Created On</th>
+        </tr>
+      </thead>
+      {% for event in events %}
       <tr>
-        <th>Name</th>
-        <th>Category</th>
-        <th>Location</th>
-        <th>Address</th>
-        <th>Inital Date</th>
-        <th>Final Date</th>
-        <th>Pre/Online</th>
+      <th scope="row">{{event.event}}</th>
+      <td>{{event.category}}
+      </td>
+      <td>{{event.location}}
+      </td>
+      <td>{{event.address}}
+      </td>
+      <td>{{event.initial_date}}
+      </td>
+      <td>{{event.final_date}}
+      </td>
+      <td>{{event.attendance}}
+      </td>
+      <td>{{event.created_on}}
+      </td>
       </tr>
-      <tr>
-        <td>Germany</td>
-        <td>Germany</td>
-        <td>Germany</td>
-        <td>Germany</td>
-        <td>Germany</td>
-        <td>Germany</td>
-        <td>Germany</td>
-      </tr>
-      <tr>
-        <td>Germany</td>
-        <td>Germany</td>
-        <td>Germany</td>
-        <td>Germany</td>
-        <td>Germany</td>
-        <td>Germany</td>
-        <td>Germany</td>
-      </tr>
+      {% endfor %}
     </table>
     
-    </body>
 {% endblock %}
