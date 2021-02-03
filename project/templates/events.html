@@ -40,7 +40,7 @@
       </td>
       <td><a href="{{ url_for('auth.viewevent', event_id=event.id ) }}">View</a>
       </td>
-      <td><a href="{{ url_for('auth.createevent') }}">Edit</a>
+      <td><a href="{{ url_for('auth.editevent', event_id=event.id) }}">Edit</a>
       </td>
       <td><a href="{{ url_for('auth.deleteevent_post', event_id=event.id ) }}">Delete</a>
       </td>

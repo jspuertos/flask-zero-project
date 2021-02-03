@@ -2,19 +2,21 @@
 
 {% block content %}
 <div class="column is-4 is-offset-4">
-    <h3 class="title">Create Event</h3>
+    <h3 class="title">{{ event.event }} Event</h3>
     <div class="box">
-  
-        <form method="POST" action="/create-event">
+        
+        <form method="POST" action="/edit/{{ event.id }}">
             <div class="field">
                 <div class="control">
-                    <input class="input is-large" type="text" name="event" placeholder="Event Name" autofocus="">
+                    <label for="event">Event </label>
+                    <input class="input is-large" type="text" name="event" value="{{ event.event }}">
                 </div>
             </div>
 
             <div class="field">
                 <div class="control">
-                    <select class="input is-large" id="category" name="category">
+                    <label for="category">Category </label>
+                    <select class="input is-large" id="category" name="category" value="{{ event.category }}">
                         <option value="Conference">Conference</option>
                         <option value="Seminar">Seminar</option>
                         <option value="Congress">Congress</option>
@@ -22,44 +24,45 @@
                     </select>
                 </div>
             </div>
-
+            
             <div class="field">
                 <div class="control">
-                    <input class="input is-large" type="text" name="location" placeholder="Location" autofocus="">
+                    <label for="location">Location </label>
+                    <input class="input is-large" type="text" name="location" value="{{ event.location }}">
                 </div>
             </div>
 
             <div class="field">
                 <div class="control">
-                    <input class="input is-large" type="text" name="address" placeholder="Address" autofocus="">
+                    <label for="address">Address </label>
+                    <input class="input is-large" type="text" name="address" value="{{ event.address }}">
                 </div>
             </div>
 
             <div class="field">
                 <div class="control">
                     <label for="initial_date">Initial Date </label>
-                    <input class="input is-large" type="datetime-local" name="initial_date">
+                    <input class="input is-large" type="datetime" name="initial_date" value="{{ event.initial_date }}">
                 </div>
             </div>
 
             <div class="field">
                 <div class="control">
                     <label for="final_date">Final Date </label>
-                    <input class="input is-large" type="datetime-local" name="final_date">
+                    <input class="input is-large" type="datetime" name="final_date" value="{{ event.final_date }}">
                 </div>
             </div>
 
             <div class="field">
                 <div class="control">
                     <label for="attendance">Attendance </label>
-                    <select class="input is-large" id="attendance" name="attendance">
+                    <select class="input is-large" id="attendance" name="attendance" value="{{ event.attendance }}">
                         <option value="Person">Person</option>
                         <option value="Virtual">Virtual</option>
                     </select>
                 </div>
             </div>
-            
-            <button class="button is-block is-info is-large is-fullwidth">Create Event</button>
+            <button class="button is-block is-info is-large is-fullwidth">Edit Event</button>
         </form> 
     </div>
 </div>

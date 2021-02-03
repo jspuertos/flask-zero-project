@@ -92,3 +92,32 @@ def deleteevent_post(event_id):
 def viewevent(event_id):
     event = Event.query.get(event_id)
     return render_template('event.html', event=event)
+
+@auth.route('/edit/<int:event_id>')
+@login_required
+def editevent(event_id):
+    event = Event.query.get(event_id)
+    return render_template('edit.html', event=event)
+
+@auth.route('/edit/<int:event_id>', methods=['POST'])
+@login_required
+def editevent_post(event_id):
+    event = request.form.get('event')
+    category = request.form.get('category')
+    location = request.form.get('location')
+    address = request.form.get('address')
+    initial_date = request.form.get('initial_date')
+    final_date = request.form.get('final_date')
+    attendance = request.form.get('attendance')
+
+    event_update = Event.query.filter_by(id=event_id).first()
+    event_update.event = event
+    event_update.category = category
+    event_update.location = location
+    event_update.address = address
+    event_update.initial_date = initial_date
+    event_update.final_date = final_date
+    event_update.attendance = attendance
+    db.session.commit()
+
+    return redirect(url_for('main.events'))
