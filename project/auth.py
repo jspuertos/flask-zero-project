@@ -81,9 +81,14 @@ def createevent_post():
 @auth.route('/delete/<int:event_id>', methods=['GET', 'POST'])
 @login_required
 def deleteevent_post(event_id):
-
     delete_event = Event.query.get(event_id)
     db.session.delete(delete_event)
     db.session.commit()
 
     return redirect(url_for('main.events'))
+
+@auth.route('/event/<int:event_id>')
+@login_required
+def viewevent(event_id):
+    event = Event.query.get(event_id)
+    return render_template('event.html', event=event)

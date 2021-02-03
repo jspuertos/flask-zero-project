@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template
 from flask_login import login_required, current_user
+from sqlalchemy import desc
 from .models import Event
 from . import db
 
@@ -13,5 +14,5 @@ def index():
 @login_required
 def events():
     user_id = current_user.id
-    events = Event.query.filter_by(user_id=user_id)
+    events = Event.query.filter_by(user_id=user_id).order_by(desc('created_on'))
     return render_template('events.html', email=current_user.email, events=events)

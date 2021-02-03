@@ -16,6 +16,7 @@
           <th scope="col">Final Date</th>
           <th scope="col">Attendance</th>
           <th scope="col">Created On</th>
+          <th scope="col">View</th>
           <th scope="col">Edit</th>
           <th scope="col">Delete</th>
         </tr>
@@ -36,6 +37,8 @@
       <td>{{event.attendance}}
       </td>
       <td>{{event.created_on}}
+      </td>
+      <td><a href="{{ url_for('auth.viewevent', event_id=event.id ) }}">View</a>
       </td>
       <td><a href="{{ url_for('auth.createevent') }}">Edit</a>
       </td>
