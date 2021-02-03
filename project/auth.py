@@ -77,3 +77,13 @@ def createevent_post():
     db.session.commit()
 
     return redirect(url_for('main.events'))
+
+@auth.route('/delete/<int:event_id>', methods=['GET', 'POST'])
+@login_required
+def deleteevent_post(event_id):
+
+    delete_event = Event.query.get(event_id)
+    db.session.delete(delete_event)
+    db.session.commit()
+
+    return redirect(url_for('main.events'))

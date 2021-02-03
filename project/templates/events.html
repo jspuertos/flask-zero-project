@@ -16,6 +16,8 @@
           <th scope="col">Final Date</th>
           <th scope="col">Attendance</th>
           <th scope="col">Created On</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
         </tr>
       </thead>
       {% for event in events %}
@@ -34,6 +36,10 @@
       <td>{{event.attendance}}
       </td>
       <td>{{event.created_on}}
+      </td>
+      <td><a href="{{ url_for('auth.createevent') }}">Edit</a>
+      </td>
+      <td><a href="{{ url_for('auth.deleteevent_post', event_id=event.id ) }}">Delete</a>
       </td>
       </tr>
       {% endfor %}
